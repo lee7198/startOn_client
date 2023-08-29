@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function Loading() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const getRecomend = async () => {
     const data = await axios
