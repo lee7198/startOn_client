@@ -6,6 +6,7 @@ import Main from "./pages/main";
 import Select from "./pages/select";
 import Result from "./pages/result";
 import "./index.css";
+import Loading from "./pages/loading";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { index: true, element: <Main /> },
       { path: "select", element: <Select /> },
       { path: "result", element: <Result /> },
+      { path: "loading", element: <Loading /> },
     ],
   },
 ]);

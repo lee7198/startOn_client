@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../../components/Spinner";
 
 const items = [
   { idx: 1 },
@@ -69,13 +70,27 @@ export default function Select() {
           <div className="text-center text-white py-3 my-6 cursor-pointer hover:bg-white/10">
             더보기
           </div>
+          <div className="text-center">
+            <Spinner />
+          </div>
         </div>
       </div>
       <div
-        className="bg-[#C0EA74] fixed bottom-10 right-10 md:right-[20%] py-3 px-6 rounded-full cursor-pointer hover:bg-[#ccdcae]"
+        className="bg-[#C0EA74] flex gap-3 fixed bottom-10 right-10 md:right-[20%] pl-6 pr-6 py-3 rounded-full cursor-pointer hover:bg-[#ccdcae]"
         onClick={() => navigate("/result")}
       >
-        분석하기 &gt;
+        <span>분석하기</span>
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="#000"
+            viewBox="0 0 256 256"
+          >
+            <path d="M218.83,130.83l-72,72a4,4,0,0,1-5.66-5.66L206.34,132H40a4,4,0,0,1,0-8H206.34L141.17,58.83a4,4,0,0,1,5.66-5.66l72,72A4,4,0,0,1,218.83,130.83Z"></path>
+          </svg>
+        </span>
       </div>
     </div>
   );
