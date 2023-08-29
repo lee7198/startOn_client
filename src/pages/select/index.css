@@ -1,0 +1,7 @@
+.selection_section .posters div:nth-child(3n + 0) {
+  transform: translateY(25%);
+}
+
+.selection_section .posters div:nth-child(3n + 2) {
+  transform: translateY(50%);
+}
