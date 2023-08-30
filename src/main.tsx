@@ -7,10 +7,12 @@ import Select from "./pages/select";
 import Result from "./pages/result";
 import "./index.css";
 import Loading from "./pages/loading";
+import App from "./App";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <App />,
     children: [
       { index: true, element: <Main /> },
       { path: "select", element: <Select /> },

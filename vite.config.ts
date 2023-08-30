@@ -13,6 +13,13 @@ export default defineConfig({
         secure: false,
         ws: true,
       },
+      "/cover": {
+        target: "https://1def-61-74-181-49.ngrok-free.app/music",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/music/, ""),
+        secure: false,
+        ws: true,
+      },
     },
   },
 });

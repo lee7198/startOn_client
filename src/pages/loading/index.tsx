@@ -1,32 +1,46 @@
 import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Loading() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const sch = useLocation().search;
+  const params = new URLSearchParams(sch);
+  const param = params.get("param");
 
   const getRecomend = async () => {
     const data = await axios
-      .get("/mbti/10,20,70,15,15,70,20,20,60/", {
+      .get("/mbti/" + param, {
         headers: {
-          Accept: "json",
-          responseType: "stream",
+          "Cache-Control": "no-cache",
           "Content-Type": "application/json",
+          Accept: "application/json", // JSON 응답을 요청하기 위해 Accept 헤더 추가
+          "Access-Control-Allow-Origin": "*",
+          "ngrok-skip-browser-warning": "true",
         },
       })
       .then((response) => {
-        return response;
+        return response.data; // response.data로 실제 데이터에 접근
       })
       .catch((error) => {
         console.log("error", error);
       });
-    // JSON.parse(data);
     return data;
   };
 
   useEffect(() => {
-    getRecomend().then((res) => console.log(res));
+    getRecomend().then((res_) => {
+      const res = JSON.parse(res_);
+      // console.log(JSON.parse(res));
+      // console.log(
+      //   `result/?mbti=${res.mbti}&title=${res.title}&genre=${res.genre}&img=${res.img}`
+      // );
+      navigate(
+        `result/?mbti=${res.mbti}&title=${res.title}&genre=${res.genre}&img=${res.img}`
+      );
+    });
   }, []);
 
   return (

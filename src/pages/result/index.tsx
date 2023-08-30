@@ -1,16 +1,33 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 export default function Result() {
+  const navigate = useNavigate();
+
+  const sch = useLocation().search;
+  const params = new URLSearchParams(sch);
+  const title = params.get("title");
+  const genre = params.get("genre").split(", ");
+  const img = params.get("img");
+
   return (
     <div className="h-[100svh] flex flex-col justify-around items-center container mx-auto max-w-screen-sm py-10">
       <div className="text-white text-center w-[80%] rounded-2xl bg-white/20 py-6 px-12">
         <div className="py-3 text-xl font-thin">🤔 당신을 위한 추천!</div>
-        <div className="pb-6 text-3xl font-bold">메이플스토리</div>
-        <div className="bg-white aspect-[4/3] rounded-2xl" />
-        <div className="w-full text-start pt-6">
-          <span className="mr-3">#RPG</span>
-          <span className="mr-3">#RPG</span>
+        <div className="pb-6 text-3xl font-bold">{title}</div>
+        <div
+          className="bg-white aspect-[4/3] rounded-2xl bg-no-repeat bg-cover bg-center"
+          style={{ backgroundImage: `url(${img})` }}
+        ></div>
+        <div className="w-full text-start py-6">
+          {genre.map((item, idx) => (
+            <span key={item + idx} className="mr-3">{`#${item}`}</span>
+          ))}
         </div>
         <div className="flex justify-end">
-          <div className="bg-white py-3 pl-6 pr-4 text-black rounded-full flex gap-3 cursor-pointer hover:bg-white/80">
+          <div
+            className="bg-white py-3 pl-6 pr-4 text-black rounded-full flex gap-3 cursor-pointer hover:bg-white/80"
+            onClick={() => navigate("/")}
+          >
             <span>다시하기</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
